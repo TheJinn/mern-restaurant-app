@@ -14,7 +14,6 @@ Both UIs follow the provided design files, and behavior follows the SRD.
 - **Express + Node** (REST API, business rules, auto‑table assignment)
 - **React + Vite** (two separate SPAs)
 - **Tailwind** (styling), **Recharts** (analytics), **Axios** (API)
-- Optional: **Mongoose** (models), **JWT** (if you enable auth)
 
 ---
 
