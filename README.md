@@ -1,4 +1,4 @@
-# MERN Restaurant app (v3)
+# MERN Restaurant app
 
 ## Overview
 A full‑stack restaurant suite built on **MERN** with two frontends using the **same backend**:
