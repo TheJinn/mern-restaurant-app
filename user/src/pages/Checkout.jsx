@@ -10,15 +10,34 @@ export default function Checkout(){
   const [showInst, setShowInst] = useState(false);
   const [inst, setInst] = useState('');
   const [swipe, setSwipe] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  const cartCount = Object.values(cart || {}).reduce((a, b) => a + b, 0);
 
   useEffect(()=>{
+    if (!cartCount) {
+      setItems([]);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
     if (!details) { nav('/'); return; }
     api.get('/api/menu').then(r=>{
       const all = r.data?.items || [];
       const picked = all.filter(it => (cart[it._id]||0) > 0).map(it => ({ ...it, qty: cart[it._id] }));
       setItems(picked);
     });
-  }, [details, cart, nav]);
+  }, [cartCount, details, cart, nav]);
+
+  if (loading && cartCount > 0) {
+    return (
+      <div className="min-h-screen flex items-stretch justify-center bg-gray-100">
+        <div className="w-[414px] min-h-screen bg-white shadow p-6 flex items-center justify-center">
+          <div className="text-sm text-gray-600">Loading your cart…</div>
+        </div>
+      </div>
+    );
+  }
 
   const subtotal = useMemo(()=>items.reduce((a,b)=>a + b.price*b.qty, 0), [items]);
   const tax = useMemo(()=>+(subtotal*0.04).toFixed(2), [subtotal]);
@@ -48,8 +67,8 @@ export default function Checkout(){
   }
   useEffect(()=>{ if (swipe >= 95) { placeOrder(); } }, [swipe]); // swipe-to-order
 
-  // Empty cart view
-  if (!items.length) {
+  if (!loading && cartCount === 0) {
+    // Empty cart view
     return (
       <div className="min-h-screen flex items-stretch justify-center bg-gray-100">
         <div className="w-[414px] min-h-screen bg-white shadow p-6 flex flex-col items-center justify-center text-center">
@@ -60,7 +79,7 @@ export default function Checkout(){
       </div>
     );
   }
-
+  
   return (
     <div className="min-h-screen flex items-stretch justify-center bg-gray-100">
       <div className="relative w-[414px] min-h-screen bg-white shadow p-3">
