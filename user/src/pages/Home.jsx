@@ -7,7 +7,7 @@ export default function Home(){
   const nav = useNavigate();
   const { details, setDetails, cart, setCart } = useStore();
 
-  // Modal (must open first)
+  // Modal
   const [showForm, setShowForm] = useState(!details);
   const [type, setType] = useState(details?.type || 'DINE_IN');
   const [name, setName] = useState(details?.name || '');
@@ -134,7 +134,7 @@ export default function Home(){
           <div ref={sentinel} className="h-10" />
         </div>
 
-        {/* Fixed Next Button */}
+        {/* Next Button */}
         <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[414px] bg-white border-t p-3">
           <button disabled={!canProceed} onClick={()=>nav('/checkout')}
             className={`w-full rounded-full py-3 font-semibold ${canProceed ? 'bg-black text-white' : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}>
@@ -142,7 +142,7 @@ export default function Home(){
           </button>
         </div>
 
-        {/* Modal overlay (click/scroll lock) */}
+        {/* Modal overlay */}
         {showForm && (
           <div className="fixed inset-0 bg-black/50 z-30 flex items-center justify-center pointer-events-auto">
             <div className="bg-white rounded-2xl w-[360px] p-4">

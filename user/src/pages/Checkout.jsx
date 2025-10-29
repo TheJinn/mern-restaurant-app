@@ -104,7 +104,7 @@ export default function Checkout(){
           <div className="flex justify-between font-semibold"><div>Grand Total</div><div>₹ {total.toFixed(2)}</div></div>
         </div>
 
-        {/* Big swipe-to-order pill with label inside */}
+        {/* swipe-to-order bar*/}
         <div className="mt-4">
           <div className="relative rounded-full bg-gray-200 h-14 flex items-center px-2 select-none">
             <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold">Swipe to Order</div>
