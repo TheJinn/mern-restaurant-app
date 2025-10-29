@@ -6,6 +6,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+
+const allowed = [
+  'https://mern-restaurant-app.netlify.app/',
+  'https://mern-restaurant-app-user.netlify.app/'
+];
+
 app.use(cors({
   origin(origin, cb) {
     if (!origin) return cb(null, true); // allow curl/postman
