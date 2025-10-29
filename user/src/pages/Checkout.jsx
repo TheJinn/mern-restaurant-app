@@ -26,7 +26,7 @@ export default function Checkout(){
       const all = r.data?.items || [];
       const picked = all.filter(it => (cart[it._id]||0) > 0).map(it => ({ ...it, qty: cart[it._id] }));
       setItems(picked);
-    });
+    }).finally(() => setLoading(false));
   }, [cartCount, details, cart, nav]);
 
   if (loading && cartCount > 0) {
