@@ -6,8 +6,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(cors({
+  origin(origin, cb) {
+    if (!origin) return cb(null, true); // allow curl/postman
+    if (allowed.includes(origin)) return cb(null, true);
+    return cb(new Error('Not allowed by CORS'));
+  },
+  credentials: false
+}));
+app.use(express.json());
 app.use(morgan('dev'));
 
 import './models/MenuItem.js';
