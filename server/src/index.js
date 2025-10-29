@@ -7,19 +7,8 @@ dotenv.config();
 
 const app = express();
 
-const allowed = [
-  'https://mern-restaurant-app.netlify.app/',
-  'https://mern-restaurant-app-user.netlify.app/'
-];
 
-app.use(cors({
-  origin(origin, cb) {
-    if (!origin) return cb(null, true); // allow curl/postman
-    if (allowed.includes(origin)) return cb(null, true);
-    return cb(new Error('Not allowed by CORS'));
-  },
-  credentials: false
-}));
+app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
