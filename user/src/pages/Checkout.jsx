@@ -96,7 +96,7 @@ export default function Checkout(){
           {items.map(it => (
             <div key={it._id} className="flex gap-3 items-center border rounded-2xl p-2 relative">
               <button className="absolute right-2 top-2 text-lg leading-none" onClick={()=>remove(it._id)}>×</button>
-              {it.productImage && <img loading="lazy" src={it.productImage} alt={it.name} className="w-16 h-16 object-cover rounded" />}
+              {it.productImage && <img src={it.productImage} alt={it.name} className="w-16 h-16 object-cover rounded" />}
               <div className="flex-1">
                 <div className="font-medium">{it.name}</div>
                 <div className="text-sm">₹ {it.price}</div>
