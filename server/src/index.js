@@ -15,6 +15,7 @@ import tableRoutes from './routes/tables.js';
 import orderRoutes from './routes/orders.js';
 import analyticsRoutes from './routes/analytics.js';
 import configRoutes from './routes/config.js';
+import uploadsRouter from './routes/uploads.js';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use('/api/tables', tableRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/config', configRoutes);
+app.use('/api/uploads', uploadsRouter);
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
