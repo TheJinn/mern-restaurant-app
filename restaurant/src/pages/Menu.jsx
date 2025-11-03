@@ -71,7 +71,7 @@ export default function Menu(){
     {toast && <div className="fixed right-4 top-4 bg-black text-white rounded-full px-3 py-1 text-sm">{toast}</div>}
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
       {items.map(it => (<div key={it._id} className="bg-white rounded-2xl shadow-card p-3 border">
-        {it.productImage && (<img loading="lazy" src={it.productImage} alt={it.name} className="w-full h-28 object-cover rounded-lg mb-2" />)}
+        {it.productImage && (<img src={it.productImage} alt={it.name} className="w-full h-28 object-cover rounded-lg mb-2" />)}
         <div className="font-medium flex items-center justify-between"><span>{it.name}</span><span className="text-xs">★ {Number(it.rating||0).toFixed(1)}</span></div>
         <div className="text-xs opacity-70">{it.description}</div><div className="text-sm">₹ {it.price}</div>
         <div className="text-xs">Avg Prep: {it.averagePreparationTime} min</div><div className="text-xs">Category: {it.category}</div>
