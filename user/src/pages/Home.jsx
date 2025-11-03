@@ -114,7 +114,7 @@ export default function Home(){
           <div className="grid grid-cols-2 gap-3">
             {items.map(it => (
               <div key={it._id} className="border rounded-2xl p-3 relative overflow-hidden">
-                {it.productImage && <img src={it.productImage} alt={it.name} className="w-full h-28 object-cover rounded-lg mb-2" />}
+                {it.productImage && <img loading="lazy" src={it.productImage} alt={it.name} className="w-full h-28 object-cover rounded-lg mb-2" />}
                 <div className="font-medium flex items-center justify-between">
                   <span>{it.name}</span>
                   <span className="text-xs">★ {Number(it.rating||0).toFixed(1)}</span>

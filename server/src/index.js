@@ -3,14 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-dotenv.config();
-
-const app = express();
-
-
-app.use(cors());
-app.use(express.json());
-app.use(morgan('dev'));
+import compression from 'compression';
 
 import './models/MenuItem.js';
 import './models/Table.js';
@@ -22,6 +15,17 @@ import tableRoutes from './routes/tables.js';
 import orderRoutes from './routes/orders.js';
 import analyticsRoutes from './routes/analytics.js';
 import configRoutes from './routes/config.js';
+
+dotenv.config();
+
+const app = express();
+
+
+app.use(cors());
+app.use(compression());
+app.use(express.json({ limit: '2mb' }));
+app.use(morgan('dev'));
+
 
 app.use('/api/menu', menuRoutes);
 app.use('/api/tables', tableRoutes);
