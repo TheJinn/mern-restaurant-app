@@ -4,7 +4,7 @@ import MenuItem from '../models/MenuItem.js';
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const { q = '', category, page = 1, limit = 20 } = req.query;
+  const { q = '', category, page = 1, limit = 1000 } = req.query;
   const filter = {};
   if (category) filter.category = category;
   if (q) filter.name = { $regex: q, $options: 'i' };
