@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   if (q) filter.name = { $regex: q, $options: 'i' };
 
   const items = await MenuItem.find(filter)
-    .select('name price rating stock productImage category prepTime isVeg description')
+    .select('name price rating stock productImage category averagePreparationTime description')
     .sort({ name: 1 })
     .skip((+page - 1) * +limit)
     .limit(+limit)
